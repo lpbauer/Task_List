@@ -1,55 +1,37 @@
-class TaskList
 
-  def initialize
-    @container = []
-  end
-
-  def container
-    @container
-  end
-
-  def add_tasks_to_tasklist(task)
-    @container << task
-  end
-
-  def include_completed_tasks
-    @container.select {|t| t.task_done == true}
-  end
-
-  def include_not_completed_tasks
-    @container.select {|t| t.task_done == false}
-  end
-
-end
 # Story: As a developer, I can create a Task.
-class Task < TaskList
+class Task
   # these arguments are required whenever a new Task is made
   # Story: As a developer, I can give a Task a title and retrieve it.
+  # initialize Task to pass Title of task and description of task
   def initialize(title,description)
     @title = title
     @description = description
     @task_done = false
   end
-
+  # getter for title of task
   def title
     @title
   end
-
+  # getter for description of task
   def description
     @description
   end
-
+  # setter for task being completed or not
   def task_done?
     # @description = "#{@description}: completed"
     if @task_done == false
       @task_done = true
+      @date = "completed"
+    else
+      @task_done = false
     end
   end
-
+  # getter for task complete status
   def task_done
     @task_done
   end
-
+  # creating a string to list categories and their values for tasks
   def to_s
     "Title: #{@title} Description: #{@description} Task Done?: #{@task_done}"
   end
@@ -73,20 +55,9 @@ end
 #
 # Story: As a developer with a TaskList with and without due dates, I can list all the not completed items in order of due date, and then the items without due dates.
 
-class DueDateTask < Task
-  def initialize(due_date)
-    super
-    @date = due_date
-  end
 
-  def to_s
-    super + "Due date: #{@date}"
-  end
 
-  # def add_date_to_tasks
-  #
-  # end
-end
+
 # Story: As a developer, I can give a Task a description and retrieve it.
 #
 # Story: As a developer, I can mark a Task done.
